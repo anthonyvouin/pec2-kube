@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-pec-2-service
+  labels:
+    app: kube-pec-2
+    component: front-end
+    resource: flutter
+spec:
+  selector:
+    app: kube-pec-2
+    component: front-end
+    resource: flutter
+  ports:
+    - port: 57119
+      targetPort: 80
+  type: LoadBalancer

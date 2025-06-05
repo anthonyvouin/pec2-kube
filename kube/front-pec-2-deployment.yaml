@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-pec-2-deployment
+  labels:
+    app: kube-pec-2
+    component: front-end
+    resource: flutter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-pec-2
+      component: front-end
+      resource: flutter
+  template:
+    metadata:
+      labels:
+        app: kube-pec-2
+        component: front-end
+        resource: flutter
+    spec:
+      containers:
+        - name: front-end
+          image: charlineroyer937/frontend-pec-2:1.1.1
+          env:
+            - name: API_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: front-pec-2-configmap-env
+                  key: API_BASE_URL
+            - name: API_BASE_URL_WEB
+              valueFrom:
+                configMapKeyRef:
+                  name: front-pec-2-configmap-env
+                  key: API_BASE_URL_WEB
+            - name: NGINX_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: front-pec-2-configmap-env
+                  key: NGINX_PORT
+          ports:
+            - containerPort: 80
