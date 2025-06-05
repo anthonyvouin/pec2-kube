@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-pec-2-deployment
+  labels:
+    app: back-pec-2
+    component: backend
+    resource: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-pec-2
+      component: backend
+      resource: app
+  template:
+    metadata:
+      labels:
+        app: back-pec-2
+        component: backend
+        resource: app
+    spec:
+      containers:
+        - name: backend
+          image: charlineroyer937/backend-pec-2:1.1.3
+          env:
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: back-pec-2-secret-env
+                  key: DB_URL
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: back-pec-2-secret-env
+                  key: JWT_SECRET
+            - name: GOOGLE_SMTP_MDP
+              valueFrom:
+                secretKeyRef:
+                 name: back-pec-2-secret-env
+                 key: GOOGLE_SMTP_MDP
+            - name: CLOUDINARY_CLOUD_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: back-pec-2-secret-env
+                  key: CLOUDINARY_CLOUD_NAME
+            - name: CLOUDINARY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: back-pec-2-secret-env
+                  key: CLOUDINARY_API_KEY
+            - name: CLOUDINARY_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: back-pec-2-secret-env
+                  key: CLOUDINARY_API_SECRET
+            - name: INSEE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: back-pec-2-secret-env
+                  key: INSEE_API_KEY
+            - name: BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: back-pec-2-configmap-env
+                  key: BASE_URL
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: back-pec-2-configmap-env
+                  key: PORT
+            - name: STRIPE_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: back-pec-2-secret-env
+                  key: STRIPE_PUBLIC_KEY
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: back-pec-2-secret-env
+                  key: STRIPE_SECRET_KEY
+            - name: STRIPE_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: back-pec-2-secret-env
+                  key: STRIPE_WEBHOOK_SECRET
+          ports:
+            - containerPort: 8080
+              protocol: TCP
