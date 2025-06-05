@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: front-pec-2-configmap-env-prod
+data:
+  API_BASE_URL: "https://api.onlyflick.akiagaming.fr"
+  API_BASE_URL_WEB: "https://api.onlyflick.akiagaming.fr"
+  NGINX_PORT: "80"
+  PORTDOCKER: "57119"
+  BACKEND_URL: "https://onlyflick.akiagaming.fr"

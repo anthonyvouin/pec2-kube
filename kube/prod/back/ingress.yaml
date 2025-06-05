@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: back-ingress
+  namespace: default
+  annotations:
+    networking.gke.io/managed-certificates: back-managed-cert
+    kubernetes.io/ingress.class: "gce"
+spec:
+  ingressClassName: gce
+  rules:
+    - host: api.onlyflick.akiagaming.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: back-pec-2-service
+                port:
+                  number: 8080
