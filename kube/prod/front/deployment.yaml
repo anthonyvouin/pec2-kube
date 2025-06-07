@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: front-end
-          image: charlineroyer937/frontend-pec-2:1.1.7
+          image: charlineroyer937/frontend-pec-2:latest
           env:
             - name: API_BASE_URL
               valueFrom:
