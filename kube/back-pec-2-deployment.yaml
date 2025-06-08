@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: charlineroyer937/backend-pec-2:latest
+          image: charlineroyer937/backend-pec-2:1.1.6
           env:
             - name: DB_URL
               valueFrom:
