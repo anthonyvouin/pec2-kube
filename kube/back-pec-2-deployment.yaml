@@ -23,6 +23,7 @@ spec:
       containers:
         - name: backend
           image: charlineroyer937/backend-pec-2:latest
+          imagePullPolicy: Always
           env:
             - name: DB_URL
               valueFrom:
