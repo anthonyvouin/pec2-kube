@@ -70,6 +70,16 @@ spec:
                 configMapKeyRef:
                   name: back-pec-2-configmap-env
                   key: PORT
+            - name: STRIPE_REDIRECT_SUCCESS
+              valueFrom:
+                configMapKeyRef:
+                  name: back-pec-2-configmap-env
+                  key: STRIPE_REDIRECT_SUCCESS
+            - name: STRIPE_REDIRECT_ERROR
+              valueFrom:
+                configMapKeyRef:
+                  name: back-pec-2-configmap-env
+                  key: STRIPE_REDIRECT_ERROR
             - name: STRIPE_PUBLIC_KEY
               valueFrom:
                 secretKeyRef:
